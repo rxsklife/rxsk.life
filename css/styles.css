@@ -1,96 +1,276 @@
-/* Typography */
+/* ── Base ── */
 
 html {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 14px;
 }
 
 @media (min-width: 576px) {
-	html {
-		font-size: 14px;
-	}
+	html { font-size: 15px; }
 }
 
 @media (min-width: 768px) {
-	html {
-		font-size: 16px;
-	}
+	html { font-size: 16px; }
 }
 
-@media (min-width: 992px) {
-	html {
-		font-size: 18px;
-	}
+body {
+	background: #0d1117;
+	color: #c9d1d9;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-@media (min-width: 1200px) {
-	html {
-		font-size: 20px;
-	}
-}
-
-.icons-social i {
-	font-size: 3em;
-}
-
-/* Custom Styles */
+/* ── Terminal Card ── */
 
 main {
+	width: 100%;
+	padding: 1rem;
 	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 	justify-content: center;
-	padding: 0 30px;
+}
+
+.terminal-card {
+	background: #161b22;
+	border: 1px solid #30363d;
+	border-radius: 8px;
+	width: 100%;
+	max-width: 580px;
+	overflow: hidden;
+	box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ── Terminal Header (titlebar) ── */
+
+.terminal-header {
+	background: #21262d;
+	padding: 10px 14px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-bottom: 1px solid #30363d;
+}
+
+.terminal-dots {
+	display: flex;
+	gap: 6px;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+
+.dot.red    { background: #ff6b6b; }
+.dot.yellow { background: #ffd93d; }
+.dot.green  { background: #6bcb6b; }
+
+.terminal-title {
+	color: #8b949e;
+	font-size: 0.75rem;
+	flex: 1;
 	text-align: center;
+	margin-right: 48px; /* balance the dots so title is centered */
 }
 
-main > .intro {
-	font-family: 'Reem Kufi', sans-serif;
-	font-size: 3.75em;
-	font-weight: 600;
+/* ── Terminal Body ── */
+
+.terminal-body {
+	padding: 1.5rem 1.5rem 1rem;
 }
 
-main > .tagline {
-	font-size: 1.5rem;
-	margin: 1.5rem 0;
-	font-weight: 100;
-}
+/* ── Profile Section ── */
 
-.icons-social i {
-	padding: 10px;
-}
-
-.icons-social a {
-  text-decoration: none;
-}
-
-.devto {
-	margin-bottom: -0.20rem;
-}
-
-.devto svg {
-	margin-bottom: -0.20rem;
-	margin-left: 0.675rem;;
-	width: 2.65rem;
-	height: 2.65rem;
+.profile-section {
+	text-align: center;
+	margin-bottom: 1.25rem;
 }
 
 .profile-pic {
-    text-align: center;
-    margin-bottom: 20px;
+	margin-bottom: 12px;
 }
 
 .profile-pic img {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes the image round */
-    border: 2px solid #000000; /* Optional: Adds a border */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow */
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 2px solid #58a6ff;
+	box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
 }
 
+.intro {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #58a6ff;
+	margin-bottom: 4px;
+}
+
+.tagline {
+	font-size: 0.8rem;
+	color: #8b949e;
+}
+
+/* ── Typing Lines ── */
+
+.typing-line {
+	margin-bottom: 0.6rem;
+	font-size: 0.8rem;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.prompt {
+	color: #58a6ff;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+
+.command {
+	color: #e6edf3;
+}
+
+.music-status {
+	color: #8b949e;
+	font-size: 0.75rem;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+.music-btn {
+	background: none;
+	border: 1px solid #30363d;
+	border-radius: 4px;
+	color: #8b949e;
+	cursor: pointer;
+	font-size: 0.75rem;
+	padding: 1px 6px;
+	line-height: 1.2;
+	transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.music-btn:hover {
+	background: #1c2333;
+	color: #58a6ff;
+	border-color: #58a6ff;
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 0.6; }
+	50%      { opacity: 1; }
+}
+
+.cursor-blink {
+	color: #58a6ff;
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50%      { opacity: 0; }
+}
+
+/* ── Tree Section (replaces links-section) ── */
+
+.tree-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 0.6rem;
+}
+
+.tree-header {
+	font-size: 0.8rem;
+	color: #8b949e;
+	margin-bottom: 2px;
+}
+
+.tree-dir {
+	color: #58a6ff;
+	font-weight: 700;
+}
+
+.tree-entry {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 3px 12px;
+	border-radius: 4px;
+	color: #c9d1d9;
+	text-decoration: none;
+	font-size: 0.8rem;
+	transition: background 0.15s, color 0.15s;
+	width: fit-content;
+}
+
+.tree-entry:hover {
+	background: #1c2333;
+	color: #58a6ff;
+}
+
+.tree-branch {
+	color: #484f58;
+	font-family: 'JetBrains Mono', monospace;
+	width: 28px;
+	flex-shrink: 0;
+	user-select: none;
+}
+
+.link-icon {
+	width: 16px;
+	text-align: center;
+	flex-shrink: 0;
+	color: #8b949e;
+	transition: color 0.15s;
+}
+
+.tree-entry:hover .link-icon {
+	color: #58a6ff;
+}
+
+.link-name {
+	font-weight: 700;
+	min-width: 65px;
+}
+
+.link-url {
+	color: #8b949e;
+	font-size: 0.75rem;
+	transition: color 0.15s;
+}
+
+.tree-entry:hover .link-url {
+	color: #c9d1d9;
+}
+
+/* ── Buy Me a Coffee ── */
+
+.bmc-button {
+	display: block;
+	margin: 0.75rem auto 0;
+	width: fit-content;
+	transition: opacity 0.15s;
+}
+
+.bmc-button:hover {
+	opacity: 0.85;
+}
+
+.bmc-img {
+	display: block;
+	height: 32px;
+	width: auto;
+}
+
+/* ── TryHackMe Badge ── */
+
 .tryhackme-badge {
-  display: block;
-  margin: 20px auto; /* centers horizontally and gives some vertical spacing */
-  border: none;      /* ensure no border */
-  max-width: 100%;   /* responsive: prevents overflow on small screens */
-  height: auto;      /* keep aspect ratio */
+	display: block;
+	margin: 1rem auto 0;
+	width: 329px;
+	max-width: 100%;
+	height: 88px;
+	overflow: hidden;
 }

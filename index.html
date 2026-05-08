@@ -9,38 +9,101 @@
 
 	<link rel="icon" href="favicon.ico" type="image/png" />
 
-	<link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=JetBrains+Mono:400,700&display=swap" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/themes/white-grey.css">
 </head>
 <body>
 	<main>
-		<div class="profile-pic">
-			<img src="https://i.imgur.com/ms6pCtK.png" alt="Profile Picture">
+		<div class="terminal-card">
+			<div class="terminal-header">
+				<div class="terminal-dots">
+					<span class="dot red"></span>
+					<span class="dot yellow"></span>
+					<span class="dot green"></span>
+				</div>
+				<div class="terminal-title">guest@rxsk.life:~$</div>
+			</div>
+			<div class="terminal-body">
+				<div class="profile-section">
+					<div class="profile-pic">
+						<img src="https://i.imgur.com/ms6pCtK.png" alt="Profile Picture">
+					</div>
+					<div class="intro">@rxsklife</div>
+					<div class="tagline">OSINT • Threat Intelligence • AI Development</div>
+				</div>
+
+				<div class="typing-line">
+					<span class="prompt">guest@rxsk.life:~$</span>
+					<span class="command">tree links/</span>
+				</div>
+
+				<div class="tree-section">
+					<div class="tree-header">
+						<span class="tree-dir">links/</span>
+					</div>
+					<a target="_blank" href="https://t.me/rxsklife" class="tree-entry">
+						<span class="tree-branch">├──</span>
+						<span class="link-icon"><i class="fab fa-telegram"></i></span>
+						<span class="link-name">telegram</span>
+						<span class="link-url">t.me/rxsklife</span>
+					</a>
+					<a target="_blank" href="https://github.com/rxsklife" class="tree-entry">
+						<span class="tree-branch">├──</span>
+						<span class="link-icon"><i class="fab fa-github"></i></span>
+						<span class="link-name">github</span>
+						<span class="link-url">github.com/rxsklife</span>
+					</a>
+					<a target="_blank" href="https://twitter.com/rxsklife" class="tree-entry">
+						<span class="tree-branch">├──</span>
+						<span class="link-icon"><i class="fab fa-twitter"></i></span>
+						<span class="link-name">twitter</span>
+						<span class="link-url">twitter.com/rxsklife</span>
+					</a>
+					<a target="_blank" href="https://medium.com/@rxsklife" class="tree-entry">
+						<span class="tree-branch">└──</span>
+						<span class="link-icon"><i class="fab fa-medium"></i></span>
+						<span class="link-name">medium</span>
+						<span class="link-url">medium.com/@rxsklife</span>
+					</a>
+				</div>
+
+				<div class="typing-line">
+					<span class="prompt">guest@rxsk.life:~$</span>
+					<span class="command">play promise.mp3</span>
+					<button class="music-btn" id="musicPlayBtn" aria-label="Play">⏵</button>
+					<button class="music-btn" id="musicPauseBtn" aria-label="Pause">⏸</button>
+					<span class="music-status" id="musicStatus">⏵ Playing</span>
+					<audio id="musicPlayer" autoplay loop>
+						<source src="Promise.mp3" type="audio/mpeg">
+					</audio>
+				</div>
+
+				<iframe class="tryhackme-badge" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=1454241" style="border:none;" scrolling="no"></iframe>
+
+				<a target="_blank" href="https://buymeacoffee.com/rxsklife" class="bmc-button">
+					<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" class="bmc-img">
+				</a>
+			</div>
 		</div>
-		<div class="intro">@rxsklife</div>
-		<div class="tagline">OSINT • Threat Intelligence • Fraud Prevention</div>
-		<iframe class="tryhackme-badge" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=1454241" style="border:none;"></iframe>
-		<div class="icons-social">
-			<a target="_blank" href="https://t.me/rxsklife">
-        <i class="fab fa-telegram" aria-hidden="true" title="Telegram"></i>
-        <span class="sr-only">Telegram</span>
-      </a>
-	<a target="_blank" href="https://github.com/rxsklife">
-        <i class="fab fa-github" aria-hidden="true" title="Github"></i>
-        <span class="sr-only">Github</span>
-      </a>
-      <a target="_blank" href="https://twitter.com/rxsklife">
-        <i class="fab fa-twitter" aria-hidden="true" title="Twitter"></i>
-        <span class="sr-only">Twitter</span>
-      </a>
-      <a target="_blank" href="https://medium.com/@rxsklife">
-        <i class="fab fa-medium" aria-hidden="true" title="Medium"></i>
-        <span class="sr-only">Medium</span>
-      </a>
-    </div>
 	</main>
+
+	<script>
+		const player = document.getElementById('musicPlayer');
+		const playBtn = document.getElementById('musicPlayBtn');
+		const pauseBtn = document.getElementById('musicPauseBtn');
+		const status = document.getElementById('musicStatus');
+
+		playBtn.addEventListener('click', () => {
+			player.play();
+			status.textContent = '⏵ Playing';
+		});
+
+		pauseBtn.addEventListener('click', () => {
+			player.pause();
+			status.textContent = '⏸ Paused';
+		});
+	</script>
 </body>
 </html>
