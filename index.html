@@ -90,7 +90,9 @@
 					</audio>
 				</div>
 
-				<iframe class="tryhackme-badge" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=1454241" style="border:none;" scrolling="no"></iframe>
+				<div class="thm-wrapper">
+					<iframe class="tryhackme-badge" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=1454241" style="border:none;" scrolling="no"></iframe>
+				</div>
 
 				<a target="_blank" href="https://buymeacoffee.com/rxsklife" class="bmc-button">
 					<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" class="bmc-img">
@@ -114,6 +116,26 @@
 			player.pause();
 			status.innerHTML = '<i class="fas fa-pause"></i> Paused';
 		});
+
+		// Scale THM badge to fit its container on small screens
+		const thmWrapper = document.querySelector('.thm-wrapper');
+		const thmBadge = document.querySelector('.tryhackme-badge');
+		function scaleThmBadge() {
+			const wrapperWidth = thmWrapper.clientWidth;
+			const nativeWidth = 329;
+			if (wrapperWidth < nativeWidth) {
+				const scale = wrapperWidth / nativeWidth;
+				thmBadge.style.transform = 'scale(' + scale + ')';
+				thmBadge.style.height = (88 * scale) + 'px';
+			} else {
+				thmBadge.style.transform = 'none';
+				thmBadge.style.height = '88px';
+			}
+		}
+		if (thmWrapper && thmBadge) {
+			scaleThmBadge();
+			window.addEventListener('resize', scaleThmBadge);
+		}
 	</script>
 </body>
 </html>

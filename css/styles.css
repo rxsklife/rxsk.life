@@ -278,12 +278,17 @@ main {
 
 /* ── TryHackMe Badge ── */
 
-.tryhackme-badge {
-	display: block;
+.thm-wrapper {
 	margin: 1rem auto 0;
 	width: 329px;
 	max-width: 100%;
-	height: auto;
-	aspect-ratio: 329 / 88;
 	overflow: hidden;
+}
+
+.tryhackme-badge {
+	display: block;
+	border: none;
+	width: 329px;
+	height: 88px;
+	transform-origin: top left;
 }
