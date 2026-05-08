@@ -10,7 +10,17 @@
 	<link rel="icon" href="favicon.ico" type="image/png" />
 
 	<link href="https://fonts.googleapis.com/css?family=JetBrains+Mono:400,700&display=swap" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" rel="stylesheet">
+	<style>
+		/* Critical inline styles — ensures layout works even if external CSS fails to load
+		   (e.g. Instagram in-app browser) */
+		html { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+		body {
+			background: #0d1117; color: #c9d1d9; margin: 0;
+			min-height: 100vh; display: flex; align-items: center; justify-content: center;
+		}
+		*, *:before, *:after { box-sizing: border-box; }
+	</style>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/styles.css">
 </head>
@@ -72,9 +82,9 @@
 				<div class="typing-line">
 					<span class="prompt">guest@rxsk.life:~$</span>
 					<span class="command">play promise.mp3</span>
-					<button class="music-btn" id="musicPlayBtn" aria-label="Play">⏵</button>
-					<button class="music-btn" id="musicPauseBtn" aria-label="Pause">⏸</button>
-					<span class="music-status" id="musicStatus">⏵ Playing</span>
+					<button class="music-btn" id="musicPlayBtn" aria-label="Play"><i class="fas fa-play"></i></button>
+					<button class="music-btn" id="musicPauseBtn" aria-label="Pause"><i class="fas fa-pause"></i></button>
+					<span class="music-status" id="musicStatus"><i class="fas fa-play"></i> Playing</span>
 					<audio id="musicPlayer" autoplay loop>
 						<source src="Promise.mp3" type="audio/mpeg">
 					</audio>
@@ -97,12 +107,12 @@
 
 		playBtn.addEventListener('click', () => {
 			player.play();
-			status.textContent = '⏵ Playing';
+			status.innerHTML = '<i class="fas fa-play"></i> Playing';
 		});
 
 		pauseBtn.addEventListener('click', () => {
 			player.pause();
-			status.textContent = '⏸ Paused';
+			status.innerHTML = '<i class="fas fa-pause"></i> Paused';
 		});
 	</script>
 </body>

@@ -139,15 +139,23 @@ main {
 	animation: pulse 2s ease-in-out infinite;
 }
 
+@media (max-width: 575px) {
+	.music-status {
+		width: 100%;
+		text-align: center;
+		margin-top: -4px;
+	}
+}
+
 .music-btn {
 	background: none;
 	border: 1px solid #30363d;
 	border-radius: 4px;
 	color: #8b949e;
 	cursor: pointer;
-	font-size: 0.75rem;
-	padding: 1px 6px;
-	line-height: 1.2;
+	font-size: 0.7rem;
+	padding: 3px 7px;
+	line-height: 1;
 	transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
@@ -155,6 +163,10 @@ main {
 	background: #1c2333;
 	color: #58a6ff;
 	border-color: #58a6ff;
+}
+
+.music-btn i {
+	font-size: 0.65rem;
 }
 
 @keyframes pulse {
@@ -271,6 +283,7 @@ main {
 	margin: 1rem auto 0;
 	width: 329px;
 	max-width: 100%;
-	height: 88px;
+	height: auto;
+	aspect-ratio: 329 / 88;
 	overflow: hidden;
 }
