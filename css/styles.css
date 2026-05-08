@@ -280,9 +280,10 @@ main {
 
 .thm-wrapper {
 	margin: 1rem auto 0;
-	width: 329px;
-	max-width: 100%;
+	width: 100%;
+	max-width: 329px;
 	overflow: hidden;
+	position: relative;
 }
 
 .tryhackme-badge {

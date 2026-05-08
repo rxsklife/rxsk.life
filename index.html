@@ -122,14 +122,13 @@
 		const thmBadge = document.querySelector('.tryhackme-badge');
 		function scaleThmBadge() {
 			const wrapperWidth = thmWrapper.clientWidth;
-			const nativeWidth = 329;
-			if (wrapperWidth < nativeWidth) {
-				const scale = wrapperWidth / nativeWidth;
-				thmBadge.style.transform = 'scale(' + scale + ')';
-				thmBadge.style.height = (88 * scale) + 'px';
+			if (wrapperWidth < 329) {
+				const scale = wrapperWidth / 329;
+				thmWrapper.style.height = (88 * scale) + 'px';
+				thmBadge.style.cssText = 'border:none;width:329px;height:88px;transform-origin:top left;transform:scale(' + scale + ');';
 			} else {
-				thmBadge.style.transform = 'none';
-				thmBadge.style.height = '88px';
+				thmWrapper.style.height = '';
+				thmBadge.style.cssText = 'border:none;';
 			}
 		}
 		if (thmWrapper && thmBadge) {
