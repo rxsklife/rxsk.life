@@ -134,6 +134,20 @@
 		if (thmWrapper && thmBadge) {
 			scaleThmBadge();
 			window.addEventListener('resize', scaleThmBadge);
+		
+			// Cache-bust the TryHackMe badge once on page load to refresh avatar (and every 5 minutes)
+			// This forces the iframe to be fetched fresh, which can fix stale or cached avatar images.
+			(function refreshThmBadge() {
+				try {
+					const baseSrc = thmBadge.src.split('?')[0];
+					// load fresh on first render
+					thmBadge.src = baseSrc + '?userPublicId=1454241&t=' + Date.now();
+					// auto-refresh every 5 minutes
+					setInterval(() => { thmBadge.src = baseSrc + '?userPublicId=1454241&t=' + Date.now(); }, 5 * 60 * 1000);
+				} catch (e) {
+					// ignore if something goes wrong — nothing critical
+				}
+			})();
 		}
 	</script>
 </body>
