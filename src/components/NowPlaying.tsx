@@ -77,7 +77,28 @@ export function NowPlaying() {
         }
         className="np-btn"
       >
-        <span aria-hidden="true">{active ? "\u23F8" : "\u25B6"}</span>
+        {active ? (
+          <svg
+            viewBox="0 0 12 12"
+            width="10"
+            height="10"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect x="1.5" y="1" width="3" height="10" fill="currentColor" />
+            <rect x="7.5" y="1" width="3" height="10" fill="currentColor" />
+          </svg>
+        ) : (
+          <svg
+            viewBox="0 0 12 12"
+            width="10"
+            height="10"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M2 1 L11 6 L2 11 Z" fill="currentColor" />
+          </svg>
+        )}
       </button>
       <span
         aria-hidden="true"
