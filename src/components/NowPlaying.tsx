@@ -20,7 +20,28 @@ export function NowPlaying() {
     audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("error", onError);
+    const GESTURES: (keyof DocumentEventMap)[] = [
+      "pointerdown",
+      "keydown",
+      "touchstart",
+    ];
+    const stopWaiting = () =>
+      GESTURES.forEach((g) => document.removeEventListener(g, onFirstGesture));
+    const onFirstGesture = () => {
+      stopWaiting();
+      if (!audio.paused) return;
+      dispatch({ type: "play-requested" });
+      audio.play().catch(() => dispatch({ type: "play-rejected" }));
+    };
+    dispatch({ type: "play-requested" });
+    audio.play().catch(() => {
+      dispatch({ type: "autoplay-blocked" });
+      GESTURES.forEach((g) =>
+        document.addEventListener(g, onFirstGesture, { passive: true }),
+      );
+    });
     return () => {
+      stopWaiting();
       audio.removeEventListener("playing", onPlaying);
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
@@ -51,12 +72,17 @@ export function NowPlaying() {
         type="button"
         onClick={toggle}
         aria-pressed={active}
-        aria-label={active ? "pause promise by weiland" : "play promise by weiland"}
+        aria-label={
+          active ? "pause promise by weiland" : "play promise by weiland"
+        }
         className="np-btn"
       >
         <span aria-hidden="true">{active ? "\u23F8" : "\u25B6"}</span>
       </button>
-      <span aria-hidden="true" className={`np-bars ${state.status === "playing" ? "is-playing" : ""}`}>
+      <span
+        aria-hidden="true"
+        className={`np-bars ${state.status === "playing" ? "is-playing" : ""}`}
+      >
         {BARS.map((b) => (
           <span key={b} style={{ animationDelay: `${b * 120}ms` }} />
         ))}
@@ -69,8 +95,10 @@ export function NowPlaying() {
       <output aria-live="polite" className="sr-only">
         {statusLabel(state)}
       </output>
-      {state.status === "error" && <span className="dim">[playback failed]</span>}
-      <audio ref={audioRef} src="/promise.mp3" preload="none" loop />
+      {state.status === "error" && (
+        <span className="dim">[playback failed]</span>
+      )}
+      <audio ref={audioRef} src="/promise.mp3" preload="auto" autoPlay loop />
     </div>
   );
 }

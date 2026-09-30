@@ -11,6 +11,7 @@ export type TransmissionEvent =
   | { type: "play-requested" }
   | { type: "play-started" }
   | { type: "play-rejected" }
+  | { type: "autoplay-blocked" }
   | { type: "paused" }
   | { type: "ended" }
   | { type: "toggle-mute" }
@@ -22,6 +23,8 @@ export function reduce(state: TransmissionState, event: TransmissionEvent): Tran
       return { ...state, status: "loading" };
     case "play-started":
       return { ...state, status: "playing" };
+    case "autoplay-blocked":
+      return { ...state, status: "idle" };
     case "play-rejected":
     case "media-error":
       return { ...state, status: "error" };

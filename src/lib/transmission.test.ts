@@ -2,6 +2,13 @@ import { describe, expect, it } from "vitest";
 import { INITIAL_STATE, reduce, statusLabel } from "@/lib/transmission";
 
 describe("transmission state", () => {
+  it("returns to standby when autoplay is blocked so the first gesture can start it", () => {
+    const loading = reduce(INITIAL_STATE, { type: "play-requested" });
+    const state = reduce(loading, { type: "autoplay-blocked" });
+    expect(state.status).toBe("idle");
+    expect(statusLabel(state)).toBe("standby");
+  });
+
   it("starts on standby and unmuted", () => {
     expect(INITIAL_STATE).toEqual({ status: "idle", muted: false });
     expect(statusLabel(INITIAL_STATE)).toBe("standby");
