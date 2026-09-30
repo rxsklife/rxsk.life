@@ -1,0 +1,399 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-void: #0b0b0c;
+  --color-panel: #101012;
+  --color-line: #2a2a2e;
+  --color-bone: #e8e4da;
+  --color-dim: #8f8b82;
+  --color-signal: #ff3b3b;
+  --color-signal-deep: #d91919;
+  --color-lime: #39ff14;
+  --font-mono: var(--font-plex);
+  --default-font-family: var(--font-plex);
+  --default-mono-font-family: var(--font-plex);
+  --radius: 0px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-void);
+  color: var(--color-bone);
+  font-family: var(--font-plex), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: clip;
+  background-color: var(--color-void);
+  background-image: radial-gradient(ellipse at 50% 40%, rgba(232, 228, 218, 0.035), transparent 65%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0, 0, 0, 0.18) 2px 3px);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.75);
+}
+
+::selection {
+  background: var(--color-bone);
+  color: var(--color-void);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
+
+@keyframes pulse-dim {
+  0%, 100% { color: var(--color-bone); }
+  50% { color: var(--color-dim); }
+}
+
+@utility pulse {
+  color: var(--color-bone);
+  animation: pulse-dim 1.6s ease-in-out infinite;
+}
+
+@utility verb {
+  color: var(--color-lime);
+}
+
+@utility email {
+  color: var(--color-lime);
+  text-decoration: none;
+  transition: opacity 120ms linear;
+}
+
+.email:hover,
+.email:focus-visible {
+  opacity: 0.75;
+}
+
+.rain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.16;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.35));
+}
+
+.rain canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@utility prompt {
+  color: var(--color-bone);
+  animation: pulse-dim 1.6s ease-in-out infinite;
+}
+
+@utility dim {
+  color: var(--color-dim);
+}
+
+@utility link-row {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-bone);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background-color 120ms linear, color 120ms linear, border-color 120ms linear;
+}
+
+.link-row:hover,
+.link-row:focus-visible {
+  background: var(--color-bone);
+  border-color: var(--color-bone);
+  color: var(--color-void);
+}
+
+@utility key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  min-width: 5.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--color-bone);
+  color: var(--color-bone);
+  background: transparent;
+  text-transform: lowercase;
+  font-weight: 500;
+  transition: background-color 120ms linear, color 120ms linear;
+}
+
+.key:hover,
+.key:focus-visible {
+  background: var(--color-bone);
+  color: var(--color-void);
+}
+
+@utility key-round {
+  border-radius: 12px;
+}
+
+@utility key-solid {
+  background: var(--color-bone);
+  color: var(--color-void);
+}
+
+.key-solid:hover,
+.key-solid:focus-visible {
+  background: var(--color-dim);
+  border-color: var(--color-dim);
+  color: var(--color-void);
+}
+
+@utility window {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+@utility titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 2.35rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.9rem;
+  border-bottom: 1px solid var(--color-line);
+  background: linear-gradient(180deg, #1d1d20, #141416);
+}
+
+@utility titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-dim);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 5.4rem;
+}
+
+@utility titlebar-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+@utility wm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  color: var(--color-bone);
+  background: rgba(232, 228, 218, 0.08);
+}
+
+@utility wm-close {
+  color: var(--color-bone);
+  background: var(--color-signal-deep);
+}
+
+@utility avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--color-bone);
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--color-panel), 0 0 18px rgba(232, 228, 218, 0.12);
+}
+
+@utility np-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--color-bone);
+  color: var(--color-bone);
+  font-size: 0.6rem;
+  transition: background-color 120ms linear, color 120ms linear;
+}
+
+.np-btn:hover,
+.np-btn:focus-visible,
+.np-btn[aria-pressed="true"] {
+  background: var(--color-bone);
+  color: var(--color-void);
+}
+
+@utility np-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 0.85rem;
+}
+
+.np-bars span {
+  display: block;
+  width: 2px;
+  height: 25%;
+  background: var(--color-lime);
+  opacity: 0.5;
+  transition: height 200ms linear;
+}
+
+@keyframes eq {
+  0%, 100% { height: 25%; }
+  50% { height: 100%; }
+}
+
+.np-bars.is-playing span {
+  opacity: 1;
+  animation: eq 700ms ease-in-out infinite;
+}
+
+@utility thm-frame {
+  display: block;
+  width: 329px;
+  height: 88px;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color-scheme: light;
+}
+
+.xmr {
+  container-type: inline-size;
+}
+
+@utility xmr-address {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-bone);
+  font-size: 0.75rem;
+  transition: border-color 120ms linear;
+}
+
+.xmr-address:hover,
+.xmr-address:focus-visible {
+  border-color: var(--color-bone);
+}
+
+.xmr-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.xmr-clip {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-dim);
+  transition: color 120ms linear;
+}
+
+.xmr-address[data-copied="true"] .xmr-clip {
+  color: var(--color-lime);
+}
+
+.xmr-address:hover,
+.xmr-address:focus-visible {
+  border-color: var(--color-bone);
+}
+
+.activity {
+  color: var(--color-dim);
+}
+
+.activity .react-activity-calendar__footer {
+  margin-top: 0.4rem;
+}
+
+.activity .react-activity-calendar__scroll-container {
+  overflow: hidden;
+}
+
+.activity svg text {
+  fill: var(--color-dim);
+}
+
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.caret::after {
+  content: "\2588";
+  margin-left: 0.15em;
+  color: var(--color-bone);
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes boot {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.boot {
+  animation: boot 200ms steps(2) both;
+}
+
+.boot-1 { animation-delay: 60ms; }
+.boot-2 { animation-delay: 220ms; }
+.boot-3 { animation-delay: 380ms; }
+.boot-4 { animation-delay: 540ms; }
+.boot-5 { animation-delay: 700ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .caret::after { animation: none; }
+  .boot { animation: none; }
+  .np-bars.is-playing span { animation: none; height: 60%; }
+  .pulse, .prompt { animation: none; color: var(--color-dim); }
+  .link-row, .key { transition: none; }
+}
+
+.react-activity-calendar__tooltip {
+  z-index: 60;
+  border-radius: 0;
+  background-color: var(--color-bone) !important;
+  color: var(--color-void) !important;
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.react-activity-calendar__tooltip .react-activity-calendar__tooltip-arrow {
+  fill: var(--color-bone) !important;
+}
