@@ -26,10 +26,10 @@ const CSP = [
 ].join("; ");
 
 const OG_IMAGE = {
-  url: "/avatar.png",
-  width: 320,
-  height: 320,
-  alt: "rxsklife profile picture",
+  url: "/og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "@rxsklife over a field of green matrix code",
 };
 
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     images: [OG_IMAGE],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     site: HANDLE,
     creator: HANDLE,
     title: HANDLE,
