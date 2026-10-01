@@ -90,7 +90,7 @@ export default function Page() {
                 <a href="mailto:contact@rxsk.life" className="email text-xs">
                   contact@rxsk.life
                 </a>
-                <p className="whitespace-nowrap text-[clamp(0.68rem,3.3vw,0.875rem)]">
+                <p className="whitespace-nowrap text-[clamp(0.6rem,3.08vw,0.75rem)] sm:text-sm">
                   {FOCUS.map((item, i) => (
                     <span key={item}>
                       {i > 0 && (
