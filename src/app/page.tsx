@@ -155,8 +155,7 @@ export default function Page() {
               </section>
 
               <p className="boot boot-5 caret text-sm">
-                <span className="dim">guest@rxsk.life</span>:
-                <span className="pulse">~</span>$
+                guest@rxsk.life:<span className="pulse">~</span>$
               </p>
 
               <section

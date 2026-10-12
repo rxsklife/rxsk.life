@@ -8,10 +8,10 @@ const THEME = { dark: SHADES, light: SHADES };
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
 
-function lastSixtyDays(days: Day[]): Day[] {
+function lastNinetyDays(days: Day[]): Day[] {
   const cutoff = new Date();
   cutoff.setUTCHours(0, 0, 0, 0);
-  cutoff.setUTCDate(cutoff.getUTCDate() - 59);
+  cutoff.setUTCDate(cutoff.getUTCDate() - 89);
   return days.filter((d) => new Date(d.date + "T00:00:00Z") >= cutoff);
 }
 
@@ -25,7 +25,7 @@ export function Activity() {
     <div className="activity text-xs">
       <GitHubCalendar
         username="rxsklife"
-        transformData={lastSixtyDays}
+        transformData={lastNinetyDays}
         theme={THEME}
         colorScheme="dark"
         blockSize={11}
@@ -33,7 +33,7 @@ export function Activity() {
         fontSize={11}
         showColorLegend={false}
         tooltips={{ activity: { text: describe } }}
-        labels={{ totalCount: "{{count}} contributions in the last 60 days" }}
+        labels={{ totalCount: "{{count}} contributions in the last 90 days" }}
         errorMessage="activity feed unreachable right now."
       />
     </div>
