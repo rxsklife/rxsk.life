@@ -9,7 +9,7 @@ const CALENDAR_HEIGHT = 180;
 const BLOCK_SIZE = 17;
 const BLOCK_MARGIN = 7;
 
-const SHADES = ["#12211a", "#1d5a2c", "#2f9e3a", "#55d64f", "#39ff14"];
+const SHADES = ["#1c1c1f", "#1d5a2c", "#2f9e3a", "#55d64f", "#39ff14"];
 const THEME = { dark: SHADES, light: SHADES };
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
