@@ -12,6 +12,7 @@ export function NowPlaying() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    audio.volume = 0.9;
     const onPlaying = () => dispatch({ type: "play-started" });
     const onPause = () => dispatch({ type: "paused" });
     const onEnded = () => dispatch({ type: "ended" });
