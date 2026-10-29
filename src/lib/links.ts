@@ -24,6 +24,7 @@ export type Project = {
 };
 
 export const PROJECTS: readonly Project[] = [
+  { id: "aihackercamp", name: "AI Hacker Camp", href: "https://aihackercamp.com", display: "aihackercamp.com", tag: "exhibit 00", image: null },
   { id: "osintpro", name: "OSINTPro", href: "https://osintpro.dev", display: "osintpro.dev", tag: "exhibit 01", image: "/art/osintpro.png" },
   { id: "flockradar", name: "FlockRadar", href: "https://flockradar.com", display: "flockradar.com", tag: "exhibit 02", image: "/art/flockradar.png" },
 ] as const;

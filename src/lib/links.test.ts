@@ -12,8 +12,12 @@ describe("outbound destinations", () => {
     ]);
   });
 
-  it("lists exactly the two selected projects", () => {
-    expect(PROJECTS.map((p) => p.href)).toEqual(["https://osintpro.dev", "https://flockradar.com"]);
+  it("lists the selected projects with ai hacker camp on top of osintpro", () => {
+    expect(PROJECTS.map((p) => p.href)).toEqual([
+      "https://aihackercamp.com",
+      "https://osintpro.dev",
+      "https://flockradar.com",
+    ]);
   });
 
   it("preserves the TryHackMe badge id", () => {
